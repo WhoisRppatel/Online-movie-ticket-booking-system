@@ -1,0 +1,26 @@
+<br><br>
+
+
+Movie-shows avaliable in <b>{{ city1 }}</b>
+for <b>{{ movie_name }}</b>
+<br><br>
+<br><br>
+<div class="table" align="center">
+<table border="1" height="300px">
+<tr class="success">
+    <th>Theatre Name
+</th>
+    <th>Show Time</th>
+</tr>
+{% for t in movie %}
+    <tr class="info">
+        <td>
+            {{t.show.theatre_name}}
+        </td>
+        <td>
+        <a href="{% url 'seat' show=t.id %}">{{ t.show_time }}</a>
+        </td>
+    </tr>
+{% endfor %}
+</table>
+</div>

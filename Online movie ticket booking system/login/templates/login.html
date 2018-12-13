@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if form.errors %}
+<p class="error"> Invalid Username or Password </p>
+{% endif %}
+{% if error %}
+<div class="alert alert-danger"> Invalid Username or Password </div>
+{% endif %}
+
+<div class="container"  >
+  <div class="jumbotron"  id="grad2"><font color="white">
+    <h1>Welcome to STAR Movies</h1>
+    <p>Please sign in to book movie tickets.</p> </font>
+</div>
+    {% if signup %}
+<div class="alert alert-success">User added successfully.</div>
+    {% endif %}
+            <div >
+        <form action="/login/auth/" method="POST">{% csrf_token %}
+            <table align="center" height="100%" width="20%" border="0">
+          <tr><td>
+        <div ><font>Username :</font><input type="text" name="username" placeholder="Username" value=""></div>
+        <div><font>Password :</font><input type="password" name="password" placeholder="Password" value=""></div>
+
+        <label class="checkbox-inline"><input type="checkbox" value=""><font>Remember me :</font></label>
+        <div><input type="submit" class="btn btn-primary btn-md" name="login" value="login" style="margin-right: 39px">
+         <input type="reset" class="btn btn-dark"></div>
+              </td></tr>
+                  <tr><td>
+                <a href="{% url 'adduser' %}"><font>New User?</font></a>
+              </td></tr>
+            </table>
+            </div>
+    </form>
+
+{% endblock %}

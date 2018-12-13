@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>STAR Movies</title>
+  <meta charset="utf-8">
+    {% load static %}
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'home/css/bootstrap.css' %}">
+  <script src="{% static 'home/jquery.js'%}"></script>
+  <script src="{%  static 'home/js/bootstrap.min.js'%}"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.9.4/holder.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{% static 'home/cb_new.css' %}">
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('#btnbook').click(function(){
+            var selected = [];
+            $.each($("input[name='sea']:checked"), function(){
+                selected.push($(this).val());
+            });
+
+            //alert("Selected seats are: " + selected.join(", "));
+            $('#seatForm').append('<input type="hidden" name="seatsSelected" value="'+ selected.toString() +'">');
+            var l = selected.length
+            if(l == 0 || l > 5)
+            {
+                if(l == 0)
+                {
+                    alert("Please Select a seat!!!");
+                }
+                else
+                {
+                    alert("Please select less than 6 seats!!")
+                }
+            }
+            else
+                {
+            $('#seatForm').submit();
+            }
+        });
+    });
+</script>
+
+        </head>
+<body>
+
+
+{%block content %}
+{%endblock %}
+</body>
+</html>

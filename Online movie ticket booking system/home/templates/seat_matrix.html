@@ -1,0 +1,39 @@
+   {% load home_extras %}
+{% if request.GET.isselected %}
+
+<div class="alert alert-danger">Please select other seats.</div>
+{% endif %}
+<center><br><br>
+    <form action="{% url 'book' %}" id="seatForm" method="POST">{% csrf_token %}
+    {% for seat in seats %}
+    {% if seat.seat_state %}
+
+    <input class='checkbox-custom' type='checkbox' name="{{ seat.seat_id }}" disabled/>
+    <label class="checkbox-custom-label"></label>
+    {% else %}
+
+    <input id="{{ seat.seat_id }}" class="checkbox-custom" type="checkbox" value="{{ seat.seat_id }}" name="sea" >
+<label for="{{ seat.seat_id }}"class="checkbox-custom-label"></label>
+    {% endif %}{% ifequal forloop.counter|modulo:5 0 %}
+           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        {% endifequal %}
+        {% ifequal forloop.counter|modulo:15 0 %}
+            <br>
+        {% endifequal %}
+    {% endfor %}
+<br><br>
+    <div class="col-md-4">
+        <div class="alert alert-info">Screen is here</div></div>
+    <br><br>
+
+    <button class="btn btn-info" type="button" id="btnbook">Book</button>
+    </form>
+
+
+</center>
+<br>
+<input class='checkbox-custom' type='checkbox' name="demo" checked disabled/>
+    <label class="checkbox-custom-label">Available</label>
+
+<br><input class='checkbox-custom' type='checkbox' name="demo" disabled/>
+    <label class="checkbox-custom-label">Unavailable</label>

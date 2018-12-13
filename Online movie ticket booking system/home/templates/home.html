@@ -1,0 +1,114 @@
+{% extends 'base1.html' %}
+{% block content %}
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+<div class="container-fluid">
+  <a class="navbar-brand" href="{% url 'home_page' %}"><i class="fa fa-home" style="font-size:24px"></i>&nbsp;&nbsp;STAR Movies</a>
+
+  
+  <ul class="navbar-nav">
+	<form class="form-inline" action="{% url 'search_movie' %}" method="get" name="findMovie">
+		<input class="form-control" type="text" placeholder="City" size="30%" name="searchm" required>&nbsp;&nbsp;&nbsp;
+		<button class="btn btn-success" type="submit" id="btnsearch" onclick="validCity()" >
+		Find&nbsp;&nbsp;<i class="fa fa-search" style="font-size:24px;color:white"></i>
+		</button>
+
+    </form>
+      </ul>
+   <ul class="nav navbar-nav navbar-right">
+         <li class="nav-item">
+      <a class="nav-link" href="{% url 'tickets' %}">Tickets&nbsp;&nbsp;<i class="fa fa-film" style="font-size:24px"></i></a>
+    </li>
+          <li class="nav-item">
+      <a class="nav-link" href="{% url 'profile' %}">Profile&nbsp;&nbsp;<i class="fa fa-user" style="font-size:24px"></i></a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'logout' %}">Logout&nbsp;&nbsp;<i class="fa fa-sign-out" style="font-size:24px"></i></a>
+    </li>
+
+    </ul>
+  </div>
+</nav>
+    {% if city %}
+    <div class="alert alert-danger">City not found.</div>
+    {% else %}
+    {% if ticket_up %}
+    <div class="alert alert-success">Ticket Canceled successfully.</div>
+    {% endif %}
+    {% if msg %}
+    <div class="alert alert-success">Ticket booked successfully.</div>
+    {% endif %}
+    {% endif %}
+
+
+{% load static %}
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-100" src="{% static 'home/images/1.jpg' %}" alt="First slide" height="500px" width="700px">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="{% static 'home/images/2.jpg' %}" alt="Second slide"  height="500px" width="700px">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="{% static 'home/images/3.jpg' %}" alt="Third slide" height="500px" width="700px">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+This is home.
+{% endblock %}
+
+
+
+<div id="mycarousel" class="carousel slide" data-ride="carousel" style="margin-top:-15px">
+	<ol class="carousel-indicators">
+		<li data-target="mycarousel" data-slide-to="0" class="active"></li>
+		<li data-target="mycarousel" data-slide-to="1"></li>
+		<li data-target="mycarousel" data-slide-to="2"></li>
+		<li data-target="mycarousel" data-slide-to="3"></li>
+	</ol>
+	<div class="carousel-inner" role="listbox">
+		<div class="item active">
+			<img src="~/Content/images/first.jpg">
+			<div class="carousel-caption">
+				<p>Great Movie</p>
+			</div>
+		</div>
+		<div class="item">
+			<img src="~/Content/images/first.jpg">
+			<div class="carousel-caption">
+				<p>Great Movie</p>
+			</div>
+		</div>
+		<div class="item">
+			<img src="~/Content/images/first.jpg">
+			<div class="carousel-caption">
+				<p>Great Movie</p>
+			</div>
+		</div>
+		<div class="item">
+			<img src="~/Content/images/first.jpg">
+			<div class="carousel-caption">
+				<p>Great Movie</p>
+			</div>
+		</div>
+	</div>
+	<a class="left carousel-control" href="#mycarousel" role="button" data-slide="prev">
+		<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+		<span class="sr-only">Previous</span>
+	</a>
+	
+	<a class="right carousel-control" href="#mycarousel" role="button" data-slide="next">
+		<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+		<span class="sr-only">Next</span>
+	</a>
+</div>

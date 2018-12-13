@@ -1,0 +1,58 @@
+{% extends 'base1.html' %}
+{% block content %}
+
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+<div class="container-fluid">
+  <a class="navbar-brand" href="{% url 'home_page' %}"><i class="fa fa-home" style="font-size:24px"></i>&nbsp;&nbsp;STAR Movies</a>
+    <ul class="navbar-nav">
+	<form class="form-inline" action="{% url 'search_movie' %}" method="get" name="findMovie">
+		<input class="form-control" type="text" placeholder="City" size="30%" name="searchm" required>&nbsp;&nbsp;&nbsp;
+		<button class="btn btn-success" type="submit" id="btnsearch" onclick="validCity()" >
+		Find&nbsp;&nbsp;<i class="fa fa-search" style="font-size:24px;color:white"></i>
+		</button>
+
+    </form>
+      </ul>
+    <ul class="nav navbar-nav navbar-right">
+         <li class="nav-item">
+      <a class="nav-link" href="{% url 'tickets' %}">Tickets&nbsp;&nbsp;<i class="fa fa-film" style="font-size:24px"></i></a>
+    </li>
+          <li class="nav-item">
+      <a class="nav-link" href="{% url 'profile' %}">Profile&nbsp;&nbsp;<i class="fa fa-user" style="font-size:24px"></i></a>
+    </li>
+	
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'logout' %}">Logout&nbsp;&nbsp;<i class="fa fa-sign-out" style="font-size:24px"></i></a>
+    </li>
+  
+    </ul>
+  </div>
+</nav>
+
+ <div>
+
+
+ {% if movies %}
+ {% include 'search_movie.html' %}
+ {% else %}
+ {% include 'nomovie.html' %}
+ {% endif %}
+
+     {% if movie %}
+     {% include 'search_show.html' %}
+     {% endif %}
+
+     {% if seats %}
+     {% include 'seat_matrix.html' %}
+     {% endif %}
+
+     {% if cost2 %}
+     {% include 'payment1.html' %}
+     {% endif %}
+
+     {% if book %}
+     {% include 'ticket.html' %}
+     {% endif %}
+
+ </div>
+{% endblock %}

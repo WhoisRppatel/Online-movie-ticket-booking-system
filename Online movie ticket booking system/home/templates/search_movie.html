@@ -1,0 +1,36 @@
+{% load home_extras %}
+    <h2> Current movies in
+        {{ city }}</h2>
+<br><br>
+<center>
+<table border="0">
+        {% for movie in movies %}
+
+            {% ifequal forloop.counter|modulo:6 0 %}
+                <tr>
+
+            {% endifequal %}
+
+        <td height="400px" width="300px">
+            <center>           <div>
+                {% load static %}
+                {% with "home/images/"|add:movie|add:".jpg" as image %}
+                <img src="{% static image %}" height="300px" width="200px" />
+                {% endwith %}
+                <br><br>
+
+                <a href="{% url 'bymovie' city=city movie_name=movie %}"><font size="3">{{ movie }}</font></a>
+                </center>
+            </div>
+        </td>
+
+            {% ifequal forloop.counter|modulo:6 0 %}
+                </tr>
+                <tr>
+
+                </tr>
+            {% endifequal %}
+
+        {% endfor %}
+</table>
+</center>

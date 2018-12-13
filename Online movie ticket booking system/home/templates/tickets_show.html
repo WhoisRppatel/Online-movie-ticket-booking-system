@@ -1,0 +1,67 @@
+{% extends 'base1.html' %}
+{% block content %}
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+<div class="container-fluid">
+  <a class="navbar-brand" href="{% url 'home_page' %}"><i class="fa fa-home" style="font-size:24px"></i>&nbsp;&nbsp;STAR Movies</a>
+    <ul class="navbar-nav">
+	<form class="form-inline" action="{% url 'search_movie' %}" method="get" name="findMovie">
+		<input class="form-control" type="text" placeholder="City" size="30%" name="searchm" required>&nbsp;&nbsp;&nbsp;
+		<button class="btn btn-success" type="submit" id="btnsearch" onclick="validCity()" >
+		Find&nbsp;&nbsp;<i class="fa fa-search" style="font-size:24px;color:white"></i>
+		</button>
+
+    </form>
+      </ul>
+    <ul class="nav navbar-nav navbar-right">
+         <li class="nav-item">
+      <a class="nav-link" href="{% url 'tickets' %}">Tickets&nbsp;&nbsp;<i class="fa fa-film" style="font-size:24px"></i></a>
+    </li>
+          <li class="nav-item">
+      <a class="nav-link" href="{% url 'profile' %}">Profile&nbsp;&nbsp;<i class="fa fa-user" style="font-size:24px"></i></a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'logout' %}">Logout&nbsp;&nbsp;<i class="fa fa-sign-out" style="font-size:24px"></i></a>
+    </li>
+
+    </ul>
+  </div>
+</nav>
+    {% if ticket_up %}
+
+<div class="alert alert-success">Ticket canceled successfully.</div>
+{% endif %}
+
+<br><br>
+{% load static %}
+
+<div class="container-fluid row" >
+{% regroup t by ticket_id as ticket_list %}
+{% for tickets in ticket_list%}
+
+<div class="col-md-6">
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="thumbnail">
+                {% with "home/images/"|add:tickets.list.0.seat.movie.movie_name|add:".jpg" as image %}
+                <img src="{% static image %}" height="300px" width="250px" />
+                {% endwith %}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h3> Ticket Info </h3><br>
+            <strong>Ticket Id : <b>{{tickets.grouper}}</b></strong><br><br>
+            <strong>Movie Name : <b>{{tickets.list.0.seat.movie.movie_name}}</b></strong><br><br>
+            <strong>Theatre Name : <b>{{tickets.list.0.seat.show.theatre_name}}</b></strong><br><br>
+            <strong>Seat Number : <b>{% for ticket in tickets.list %}{{ticket.seat.seat_id}} {% endfor %}</b></strong><br><br>
+            <strong>Show Time : <b>{{tickets.list.0.seat.movie.show_time}}</b></strong><br><br><br>
+            <a class="btn btn-danger" role="button" href="{% url 'ticket_update' t_id=tickets.grouper %}">Cancel</a>
+        </div>
+    </div>
+</div>
+</div>
+
+{%endfor%}
+</div>
+{% endblock %}

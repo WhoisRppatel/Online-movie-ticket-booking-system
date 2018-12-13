@@ -1,0 +1,24 @@
+{% extends 'base1.html' %}
+{% block content %}
+{% if theatre %}
+<div class="col-md-6">
+	<div class="alert alert-success">
+		{{theatre}} added successfully
+ 	</div>
+</div>
+{% endif %}
+<div class="col-md-6 pull-center">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+          <h1 class="panel-title">Add New Theatre</h1></div>
+          <div class="panel-body">
+			<form class="form-horizontal" role="form" action="" method = "post">
+				{% csrf_token %}
+			{% include 'form.html' %}
+			</form>
+		  </div>
+
+		<p><a href="products/">Click</a> to view theatre records. </p>
+	</div>
+</div>
+{% endblock %}

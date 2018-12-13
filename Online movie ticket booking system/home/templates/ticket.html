@@ -1,0 +1,62 @@
+
+{% csrf_token %}
+<br><br>
+<center>
+<table border="1" width="40%" height="500" >
+<tr>
+    <th colspan="2" style="text-align:center;">
+        <h2> Ticket Detail </h2>
+    </th>
+    </tr>
+    <tr align="center">
+        <td>
+             Theatre Name:
+        </td>
+        <td>
+            {{ movie_book.show.theatre_name }}
+        </td>
+    </tr>
+    <tr align="center">
+        <td>
+            Movie Name:
+        </td>
+        <td>
+            {{ movie_book.movie_name }}
+        </td>
+    </tr>
+<tr align="center">
+    <td>
+        Show:
+    </td>
+    <td>
+        {{ movie_book.show_time }}
+    </td>
+</tr>
+    <tr align="center">
+    <td>
+        Selected Seats:
+    </td>
+        <td>
+            {% for s in book %}
+                {{ s }}
+            {% endfor %}
+        </td>
+    </tr>
+<tr align="center">
+    <td>
+        Total Amount:
+    </td>
+<td>
+    {{ cost }}
+</td>
+</tr>
+<tr align="center">
+    <td colspan="2">
+    <form action="{% url 'home_page' %}">
+      <button class="btn btn-info" size="80%" > HOME </button>
+    </form>
+
+    </td>
+</tr>
+</table>
+</center>

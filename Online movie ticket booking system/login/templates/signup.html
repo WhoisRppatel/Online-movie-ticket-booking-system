@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if form.errors %}
+<p class="error"> Invalid Username or Password </p>
+{% endif %}
+<div class="container"  >
+  <div class="jumbotron"  id="grad2"><font color="white">
+    <h1>Welcome to STAR Movies</h1>
+    <p>Enter Your Details to Signup </p> </font>
+</div>
+<center>
+     <form action="/login/signup/" method="POST">{% csrf_token %}
+         <table height="325px" width="40%" border="0">
+             <tr><td><font color="#00ffff">Username :</font></td><td><input type="text" name="username" placeholder="Enter uniq Username" value="" size="35" required></td></tr>
+             <tr><td><font color="#00ffff">Full Name :</font></td><td><input type="text" name="fullname" placeholder="Enter Full Name" value="" size="35" required></td></tr>
+             <tr><td><font color="#00ffff">Date Of Birth :</font></td><td><input type="date" name="dob"  value="" size="35" required></td></tr>
+        <tr><td><font color="#00ffff">Email :</font></td><td><input type="text" name="email" placeholder="user@xyz.com" value="" size="35" required></td></tr>
+             <tr><td><font color="#00ffff">Phone Number :</font></td><td><input type="text" name="mob" placeholder="Enter your phone number" value="" size="35" required></td></tr>
+        <tr><td><font color="#00ffff">Password :</font></td><td><input type="password" name="password" placeholder="Password" value="" size="35" required></td></tr>
+        <tr><td><font color="#00ffff">Re-Enter :</font></td><td><input type="password" name="rpassword" placeholder="re-Password" value="" size="35" required></td></tr>
+        <tr align="center"><td colspan="2"><label class="checkbox-inline"><input type="checkbox" value=""><font color="#00ffff">Remember me :</font></label><br>
+        <input type="submit" class="btn btn-primary btn-md" name="login" value="Signup" style="margin-right: 39px">
+        <input type="reset" class="btn btn-dark">
+        </td></tr>
+        <tr><td>
+        <a href="{% url 'login' %}"><font>Already A User?</font></a>
+        </td></tr>
+        </table>
+    </form>
+</center>
+ {% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li class="{{ message.tags }}">{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+{% endblock %}

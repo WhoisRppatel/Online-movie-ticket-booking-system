@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset = "utf-8" >
+<title>MyLogin!</title>
+{% load static %}
+ <link rel="stylesheet" type="text/css" href="{%  static 'login/css/bootstrap.css' %}" />
+<style>
+#grad1 {
+    height: 200px;
+    background: red; /* For browsers that do not support gradients */
+    background: linear-gradient(to right, #0064b7, #9effff); /* Standard syntax (must be last) */
+}
+#grad2 {
+    height: 200px;
+    background: #000000; /* For browsers that do not support gradients */
+
+}
+</style>
+
+</head>
+<body id="grad1">
+
+{%block content %}
+{%endblock %}
+</body>
+</html>
